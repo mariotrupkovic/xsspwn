@@ -5,6 +5,7 @@ Import the modules
 """
 from bruteforce import *
 from ui import *
+from datetime import datetime
 from user_agent import generate_user_agent
 from requests import *
 import sys
@@ -64,7 +65,9 @@ class Fuzz ():
 	def save_vuln_links(self, links):
 		ui = UI()
 		ui.print_text("INFO", "Saving the links to a file..")
-		f = open('reports/report.txt', 'w+')
+		date = datetime.now()
+		file_path = 'reports/report_'+ date.strftime("%b_%d_%Y_%H_%M_%S ")
+		f = open(file_path, 'w+')
 		i = 0
 		while i != len(links):
 			f.write(links[i].encode('utf-8') + "\n")
